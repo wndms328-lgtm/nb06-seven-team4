@@ -2,3 +2,4 @@ node_modules/
 prisma/
 .env
 __http__/
+src/generated/
