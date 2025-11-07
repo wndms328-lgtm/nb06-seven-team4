@@ -15,8 +15,8 @@ datasource db {
 }
 
 model Group {
-  id                     Int           @id @default(autoincrement())
-  name                   String        @unique
+  id                     Int              @id @default(autoincrement())
+  name                   String           @unique
   description            String?
   nickname               String
   password               String
@@ -28,22 +28,24 @@ model Group {
   likes                  Int
   groipLike              GroipLike[]
   participant            Participant[]
-  createdAt              DateTime      @default(now())
-  updatedAt              DateTime      @updatedAt
+  exerciserecords        ExerciseRecord[]
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
   medal                  Medal[]
 }
 
 model Participant {
-  id        Int         @id @default(autoincrement())
-  nickname  String
-  password  String
-  isowner   Boolean
-  groupid   Int
-  group     Group       @relation(fields: [groupid], references: [id], onDelete: Cascade)
-  hasLiked  Boolean
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  GroipLike GroipLike[]
+  id              Int              @id @default(autoincrement())
+  nickname        String
+  password        String
+  isowner         Boolean
+  groupid         Int
+  group           Group            @relation(fields: [groupid], references: [id], onDelete: Cascade)
+  hasLiked        Boolean
+  exerciserecords ExerciseRecord[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  GroipLike       GroipLike[]
 
   @@unique([groupid, nickname])
 }
@@ -58,15 +60,23 @@ model GroipLike {
 }
 
 model ExerciseRecord {
-  id           Int          @id @default(autoincrement())
-  exercisetype exerciseType
-  description  String?
-  playtime     Int
-  distance     Float
-  images       String[]
-  password     String
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  id            Int          @id @default(autoincrement())
+  exercisetype  exerciseType
+  description   String?
+  playtime      Int
+  distance      Float
+  images        String[]
+  password      String
+  participantId Int
+  participant   Participant  @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  groupId       Int
+  group         Group        @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([groupId])
+  @@index([participantId])
+  @@index([groupId, createdAt])
 }
 
 model Medal {

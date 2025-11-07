@@ -286,6 +286,7 @@ export type GroupWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Group"> | Date | string
   groipLike?: Prisma.GroipLikeListRelationFilter
   participant?: Prisma.ParticipantListRelationFilter
+  exerciserecords?: Prisma.ExerciseRecordListRelationFilter
   medal?: Prisma.MedalListRelationFilter
 }
 
@@ -305,6 +306,7 @@ export type GroupOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   groipLike?: Prisma.GroipLikeOrderByRelationAggregateInput
   participant?: Prisma.ParticipantOrderByRelationAggregateInput
+  exerciserecords?: Prisma.ExerciseRecordOrderByRelationAggregateInput
   medal?: Prisma.MedalOrderByRelationAggregateInput
 }
 
@@ -327,6 +329,7 @@ export type GroupWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Group"> | Date | string
   groipLike?: Prisma.GroipLikeListRelationFilter
   participant?: Prisma.ParticipantListRelationFilter
+  exerciserecords?: Prisma.ExerciseRecordListRelationFilter
   medal?: Prisma.MedalListRelationFilter
 }, "id" | "name">
 
@@ -385,6 +388,7 @@ export type GroupCreateInput = {
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeCreateNestedManyWithoutGroupInput
   participant?: Prisma.ParticipantCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalCreateNestedManyWithoutGroupInput
 }
 
@@ -404,6 +408,7 @@ export type GroupUncheckedCreateInput = {
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutGroupInput
   participant?: Prisma.ParticipantUncheckedCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalUncheckedCreateNestedManyWithoutGroupInput
 }
 
@@ -422,6 +427,7 @@ export type GroupUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUpdateManyWithoutGroupNestedInput
   participant?: Prisma.ParticipantUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUpdateManyWithoutGroupNestedInput
 }
 
@@ -441,6 +447,7 @@ export type GroupUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutGroupNestedInput
   participant?: Prisma.ParticipantUncheckedUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUncheckedUpdateManyWithoutGroupNestedInput
 }
 
@@ -619,6 +626,20 @@ export type GroupUpdateOneRequiredWithoutGroipLikeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GroupUpdateToOneWithWhereWithoutGroipLikeInput, Prisma.GroupUpdateWithoutGroipLikeInput>, Prisma.GroupUncheckedUpdateWithoutGroipLikeInput>
 }
 
+export type GroupCreateNestedOneWithoutExerciserecordsInput = {
+  create?: Prisma.XOR<Prisma.GroupCreateWithoutExerciserecordsInput, Prisma.GroupUncheckedCreateWithoutExerciserecordsInput>
+  connectOrCreate?: Prisma.GroupCreateOrConnectWithoutExerciserecordsInput
+  connect?: Prisma.GroupWhereUniqueInput
+}
+
+export type GroupUpdateOneRequiredWithoutExerciserecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.GroupCreateWithoutExerciserecordsInput, Prisma.GroupUncheckedCreateWithoutExerciserecordsInput>
+  connectOrCreate?: Prisma.GroupCreateOrConnectWithoutExerciserecordsInput
+  upsert?: Prisma.GroupUpsertWithoutExerciserecordsInput
+  connect?: Prisma.GroupWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GroupUpdateToOneWithWhereWithoutExerciserecordsInput, Prisma.GroupUpdateWithoutExerciserecordsInput>, Prisma.GroupUncheckedUpdateWithoutExerciserecordsInput>
+}
+
 export type GroupCreateNestedOneWithoutMedalInput = {
   create?: Prisma.XOR<Prisma.GroupCreateWithoutMedalInput, Prisma.GroupUncheckedCreateWithoutMedalInput>
   connectOrCreate?: Prisma.GroupCreateOrConnectWithoutMedalInput
@@ -647,6 +668,7 @@ export type GroupCreateWithoutParticipantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalCreateNestedManyWithoutGroupInput
 }
 
@@ -665,6 +687,7 @@ export type GroupUncheckedCreateWithoutParticipantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalUncheckedCreateNestedManyWithoutGroupInput
 }
 
@@ -698,6 +721,7 @@ export type GroupUpdateWithoutParticipantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUpdateManyWithoutGroupNestedInput
 }
 
@@ -716,6 +740,7 @@ export type GroupUncheckedUpdateWithoutParticipantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUncheckedUpdateManyWithoutGroupNestedInput
 }
 
@@ -733,6 +758,7 @@ export type GroupCreateWithoutGroipLikeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   participant?: Prisma.ParticipantCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalCreateNestedManyWithoutGroupInput
 }
 
@@ -751,6 +777,7 @@ export type GroupUncheckedCreateWithoutGroipLikeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   participant?: Prisma.ParticipantUncheckedCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutGroupInput
   medal?: Prisma.MedalUncheckedCreateNestedManyWithoutGroupInput
 }
 
@@ -784,6 +811,7 @@ export type GroupUpdateWithoutGroipLikeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   participant?: Prisma.ParticipantUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUpdateManyWithoutGroupNestedInput
 }
 
@@ -801,6 +829,97 @@ export type GroupUncheckedUpdateWithoutGroipLikeInput = {
   likes?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  participant?: Prisma.ParticipantUncheckedUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutGroupNestedInput
+  medal?: Prisma.MedalUncheckedUpdateManyWithoutGroupNestedInput
+}
+
+export type GroupCreateWithoutExerciserecordsInput = {
+  name: string
+  description?: string | null
+  nickname: string
+  password: string
+  image?: string | null
+  tag?: Prisma.GroupCreatetagInput | string[]
+  discordwebhookurl?: string | null
+  discordserverinviteurl?: string | null
+  goldnumber: number
+  likes: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groipLike?: Prisma.GroipLikeCreateNestedManyWithoutGroupInput
+  participant?: Prisma.ParticipantCreateNestedManyWithoutGroupInput
+  medal?: Prisma.MedalCreateNestedManyWithoutGroupInput
+}
+
+export type GroupUncheckedCreateWithoutExerciserecordsInput = {
+  id?: number
+  name: string
+  description?: string | null
+  nickname: string
+  password: string
+  image?: string | null
+  tag?: Prisma.GroupCreatetagInput | string[]
+  discordwebhookurl?: string | null
+  discordserverinviteurl?: string | null
+  goldnumber: number
+  likes: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutGroupInput
+  participant?: Prisma.ParticipantUncheckedCreateNestedManyWithoutGroupInput
+  medal?: Prisma.MedalUncheckedCreateNestedManyWithoutGroupInput
+}
+
+export type GroupCreateOrConnectWithoutExerciserecordsInput = {
+  where: Prisma.GroupWhereUniqueInput
+  create: Prisma.XOR<Prisma.GroupCreateWithoutExerciserecordsInput, Prisma.GroupUncheckedCreateWithoutExerciserecordsInput>
+}
+
+export type GroupUpsertWithoutExerciserecordsInput = {
+  update: Prisma.XOR<Prisma.GroupUpdateWithoutExerciserecordsInput, Prisma.GroupUncheckedUpdateWithoutExerciserecordsInput>
+  create: Prisma.XOR<Prisma.GroupCreateWithoutExerciserecordsInput, Prisma.GroupUncheckedCreateWithoutExerciserecordsInput>
+  where?: Prisma.GroupWhereInput
+}
+
+export type GroupUpdateToOneWithWhereWithoutExerciserecordsInput = {
+  where?: Prisma.GroupWhereInput
+  data: Prisma.XOR<Prisma.GroupUpdateWithoutExerciserecordsInput, Prisma.GroupUncheckedUpdateWithoutExerciserecordsInput>
+}
+
+export type GroupUpdateWithoutExerciserecordsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tag?: Prisma.GroupUpdatetagInput | string[]
+  discordwebhookurl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discordserverinviteurl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goldnumber?: Prisma.IntFieldUpdateOperationsInput | number
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groipLike?: Prisma.GroipLikeUpdateManyWithoutGroupNestedInput
+  participant?: Prisma.ParticipantUpdateManyWithoutGroupNestedInput
+  medal?: Prisma.MedalUpdateManyWithoutGroupNestedInput
+}
+
+export type GroupUncheckedUpdateWithoutExerciserecordsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tag?: Prisma.GroupUpdatetagInput | string[]
+  discordwebhookurl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  discordserverinviteurl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goldnumber?: Prisma.IntFieldUpdateOperationsInput | number
+  likes?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutGroupNestedInput
   participant?: Prisma.ParticipantUncheckedUpdateManyWithoutGroupNestedInput
   medal?: Prisma.MedalUncheckedUpdateManyWithoutGroupNestedInput
 }
@@ -820,6 +939,7 @@ export type GroupCreateWithoutMedalInput = {
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeCreateNestedManyWithoutGroupInput
   participant?: Prisma.ParticipantCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutGroupInput
 }
 
 export type GroupUncheckedCreateWithoutMedalInput = {
@@ -838,6 +958,7 @@ export type GroupUncheckedCreateWithoutMedalInput = {
   updatedAt?: Date | string
   groipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutGroupInput
   participant?: Prisma.ParticipantUncheckedCreateNestedManyWithoutGroupInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutGroupInput
 }
 
 export type GroupCreateOrConnectWithoutMedalInput = {
@@ -871,6 +992,7 @@ export type GroupUpdateWithoutMedalInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUpdateManyWithoutGroupNestedInput
   participant?: Prisma.ParticipantUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutGroupNestedInput
 }
 
 export type GroupUncheckedUpdateWithoutMedalInput = {
@@ -889,6 +1011,7 @@ export type GroupUncheckedUpdateWithoutMedalInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   groipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutGroupNestedInput
   participant?: Prisma.ParticipantUncheckedUpdateManyWithoutGroupNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutGroupNestedInput
 }
 
 
@@ -899,12 +1022,14 @@ export type GroupUncheckedUpdateWithoutMedalInput = {
 export type GroupCountOutputType = {
   groipLike: number
   participant: number
+  exerciserecords: number
   medal: number
 }
 
 export type GroupCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   groipLike?: boolean | GroupCountOutputTypeCountGroipLikeArgs
   participant?: boolean | GroupCountOutputTypeCountParticipantArgs
+  exerciserecords?: boolean | GroupCountOutputTypeCountExerciserecordsArgs
   medal?: boolean | GroupCountOutputTypeCountMedalArgs
 }
 
@@ -935,6 +1060,13 @@ export type GroupCountOutputTypeCountParticipantArgs<ExtArgs extends runtime.Typ
 /**
  * GroupCountOutputType without action
  */
+export type GroupCountOutputTypeCountExerciserecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExerciseRecordWhereInput
+}
+
+/**
+ * GroupCountOutputType without action
+ */
 export type GroupCountOutputTypeCountMedalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.MedalWhereInput
 }
@@ -956,6 +1088,7 @@ export type GroupSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedAt?: boolean
   groipLike?: boolean | Prisma.Group$groipLikeArgs<ExtArgs>
   participant?: boolean | Prisma.Group$participantArgs<ExtArgs>
+  exerciserecords?: boolean | Prisma.Group$exerciserecordsArgs<ExtArgs>
   medal?: boolean | Prisma.Group$medalArgs<ExtArgs>
   _count?: boolean | Prisma.GroupCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["group"]>
@@ -1012,6 +1145,7 @@ export type GroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type GroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   groipLike?: boolean | Prisma.Group$groipLikeArgs<ExtArgs>
   participant?: boolean | Prisma.Group$participantArgs<ExtArgs>
+  exerciserecords?: boolean | Prisma.Group$exerciserecordsArgs<ExtArgs>
   medal?: boolean | Prisma.Group$medalArgs<ExtArgs>
   _count?: boolean | Prisma.GroupCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1023,6 +1157,7 @@ export type $GroupPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     groipLike: Prisma.$GroipLikePayload<ExtArgs>[]
     participant: Prisma.$ParticipantPayload<ExtArgs>[]
+    exerciserecords: Prisma.$ExerciseRecordPayload<ExtArgs>[]
     medal: Prisma.$MedalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1435,6 +1570,7 @@ export interface Prisma__GroupClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   groipLike<T extends Prisma.Group$groipLikeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$groipLikeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroipLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   participant<T extends Prisma.Group$participantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$participantArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  exerciserecords<T extends Prisma.Group$exerciserecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$exerciserecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExerciseRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   medal<T extends Prisma.Group$medalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Group$medalArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MedalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1911,6 +2047,30 @@ export type Group$participantArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ParticipantScalarFieldEnum | Prisma.ParticipantScalarFieldEnum[]
+}
+
+/**
+ * Group.exerciserecords
+ */
+export type Group$exerciserecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ExerciseRecord
+   */
+  select?: Prisma.ExerciseRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ExerciseRecord
+   */
+  omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  where?: Prisma.ExerciseRecordWhereInput
+  orderBy?: Prisma.ExerciseRecordOrderByWithRelationInput | Prisma.ExerciseRecordOrderByWithRelationInput[]
+  cursor?: Prisma.ExerciseRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExerciseRecordScalarFieldEnum | Prisma.ExerciseRecordScalarFieldEnum[]
 }
 
 /**

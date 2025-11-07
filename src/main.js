@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import participantRouter from './router/participantRouter.js';
+import rankingRouter from './router/rankingRouter.js';
 import errorHandler from './libs/errorHandler.js';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 라우터
 app.use('/groups', participantRouter);
+app.use('/groups', rankingRouter);
 
 // 기본 경로
 app.get('/', (req, res) => {

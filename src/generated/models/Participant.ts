@@ -245,6 +245,7 @@ export type ParticipantWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Participant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Participant"> | Date | string
   group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
+  exerciserecords?: Prisma.ExerciseRecordListRelationFilter
   GroipLike?: Prisma.GroipLikeListRelationFilter
 }
 
@@ -258,6 +259,7 @@ export type ParticipantOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   group?: Prisma.GroupOrderByWithRelationInput
+  exerciserecords?: Prisma.ExerciseRecordOrderByRelationAggregateInput
   GroipLike?: Prisma.GroipLikeOrderByRelationAggregateInput
 }
 
@@ -275,6 +277,7 @@ export type ParticipantWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Participant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Participant"> | Date | string
   group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
+  exerciserecords?: Prisma.ExerciseRecordListRelationFilter
   GroipLike?: Prisma.GroipLikeListRelationFilter
 }, "id" | "groupid_nickname">
 
@@ -316,6 +319,7 @@ export type ParticipantCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   group: Prisma.GroupCreateNestedOneWithoutParticipantInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutParticipantInput
   GroipLike?: Prisma.GroipLikeCreateNestedManyWithoutParticipantInput
 }
 
@@ -328,6 +332,7 @@ export type ParticipantUncheckedCreateInput = {
   hasLiked: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutParticipantInput
   GroipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutParticipantInput
 }
 
@@ -339,6 +344,7 @@ export type ParticipantUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.GroupUpdateOneRequiredWithoutParticipantNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutParticipantNestedInput
   GroipLike?: Prisma.GroipLikeUpdateManyWithoutParticipantNestedInput
 }
 
@@ -351,6 +357,7 @@ export type ParticipantUncheckedUpdateInput = {
   hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutParticipantNestedInput
   GroipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutParticipantNestedInput
 }
 
@@ -508,6 +515,20 @@ export type ParticipantUpdateOneRequiredWithoutGroipLikeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ParticipantUpdateToOneWithWhereWithoutGroipLikeInput, Prisma.ParticipantUpdateWithoutGroipLikeInput>, Prisma.ParticipantUncheckedUpdateWithoutGroipLikeInput>
 }
 
+export type ParticipantCreateNestedOneWithoutExerciserecordsInput = {
+  create?: Prisma.XOR<Prisma.ParticipantCreateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedCreateWithoutExerciserecordsInput>
+  connectOrCreate?: Prisma.ParticipantCreateOrConnectWithoutExerciserecordsInput
+  connect?: Prisma.ParticipantWhereUniqueInput
+}
+
+export type ParticipantUpdateOneRequiredWithoutExerciserecordsNestedInput = {
+  create?: Prisma.XOR<Prisma.ParticipantCreateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedCreateWithoutExerciserecordsInput>
+  connectOrCreate?: Prisma.ParticipantCreateOrConnectWithoutExerciserecordsInput
+  upsert?: Prisma.ParticipantUpsertWithoutExerciserecordsInput
+  connect?: Prisma.ParticipantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ParticipantUpdateToOneWithWhereWithoutExerciserecordsInput, Prisma.ParticipantUpdateWithoutExerciserecordsInput>, Prisma.ParticipantUncheckedUpdateWithoutExerciserecordsInput>
+}
+
 export type ParticipantCreateWithoutGroupInput = {
   nickname: string
   password: string
@@ -515,6 +536,7 @@ export type ParticipantCreateWithoutGroupInput = {
   hasLiked: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutParticipantInput
   GroipLike?: Prisma.GroipLikeCreateNestedManyWithoutParticipantInput
 }
 
@@ -526,6 +548,7 @@ export type ParticipantUncheckedCreateWithoutGroupInput = {
   hasLiked: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutParticipantInput
   GroipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutParticipantInput
 }
 
@@ -577,6 +600,7 @@ export type ParticipantCreateWithoutGroipLikeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   group: Prisma.GroupCreateNestedOneWithoutParticipantInput
+  exerciserecords?: Prisma.ExerciseRecordCreateNestedManyWithoutParticipantInput
 }
 
 export type ParticipantUncheckedCreateWithoutGroipLikeInput = {
@@ -588,6 +612,7 @@ export type ParticipantUncheckedCreateWithoutGroipLikeInput = {
   hasLiked: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedCreateNestedManyWithoutParticipantInput
 }
 
 export type ParticipantCreateOrConnectWithoutGroipLikeInput = {
@@ -614,6 +639,7 @@ export type ParticipantUpdateWithoutGroipLikeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   group?: Prisma.GroupUpdateOneRequiredWithoutParticipantNestedInput
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutParticipantNestedInput
 }
 
 export type ParticipantUncheckedUpdateWithoutGroipLikeInput = {
@@ -625,6 +651,69 @@ export type ParticipantUncheckedUpdateWithoutGroipLikeInput = {
   hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutParticipantNestedInput
+}
+
+export type ParticipantCreateWithoutExerciserecordsInput = {
+  nickname: string
+  password: string
+  isowner: boolean
+  hasLiked: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  group: Prisma.GroupCreateNestedOneWithoutParticipantInput
+  GroipLike?: Prisma.GroipLikeCreateNestedManyWithoutParticipantInput
+}
+
+export type ParticipantUncheckedCreateWithoutExerciserecordsInput = {
+  id?: number
+  nickname: string
+  password: string
+  isowner: boolean
+  groupid: number
+  hasLiked: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  GroipLike?: Prisma.GroipLikeUncheckedCreateNestedManyWithoutParticipantInput
+}
+
+export type ParticipantCreateOrConnectWithoutExerciserecordsInput = {
+  where: Prisma.ParticipantWhereUniqueInput
+  create: Prisma.XOR<Prisma.ParticipantCreateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedCreateWithoutExerciserecordsInput>
+}
+
+export type ParticipantUpsertWithoutExerciserecordsInput = {
+  update: Prisma.XOR<Prisma.ParticipantUpdateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedUpdateWithoutExerciserecordsInput>
+  create: Prisma.XOR<Prisma.ParticipantCreateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedCreateWithoutExerciserecordsInput>
+  where?: Prisma.ParticipantWhereInput
+}
+
+export type ParticipantUpdateToOneWithWhereWithoutExerciserecordsInput = {
+  where?: Prisma.ParticipantWhereInput
+  data: Prisma.XOR<Prisma.ParticipantUpdateWithoutExerciserecordsInput, Prisma.ParticipantUncheckedUpdateWithoutExerciserecordsInput>
+}
+
+export type ParticipantUpdateWithoutExerciserecordsInput = {
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isowner?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  group?: Prisma.GroupUpdateOneRequiredWithoutParticipantNestedInput
+  GroipLike?: Prisma.GroipLikeUpdateManyWithoutParticipantNestedInput
+}
+
+export type ParticipantUncheckedUpdateWithoutExerciserecordsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nickname?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isowner?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  groupid?: Prisma.IntFieldUpdateOperationsInput | number
+  hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  GroipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutParticipantNestedInput
 }
 
 export type ParticipantCreateManyGroupInput = {
@@ -644,6 +733,7 @@ export type ParticipantUpdateWithoutGroupInput = {
   hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exerciserecords?: Prisma.ExerciseRecordUpdateManyWithoutParticipantNestedInput
   GroipLike?: Prisma.GroipLikeUpdateManyWithoutParticipantNestedInput
 }
 
@@ -655,6 +745,7 @@ export type ParticipantUncheckedUpdateWithoutGroupInput = {
   hasLiked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exerciserecords?: Prisma.ExerciseRecordUncheckedUpdateManyWithoutParticipantNestedInput
   GroipLike?: Prisma.GroipLikeUncheckedUpdateManyWithoutParticipantNestedInput
 }
 
@@ -674,10 +765,12 @@ export type ParticipantUncheckedUpdateManyWithoutGroupInput = {
  */
 
 export type ParticipantCountOutputType = {
+  exerciserecords: number
   GroipLike: number
 }
 
 export type ParticipantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  exerciserecords?: boolean | ParticipantCountOutputTypeCountExerciserecordsArgs
   GroipLike?: boolean | ParticipantCountOutputTypeCountGroipLikeArgs
 }
 
@@ -689,6 +782,13 @@ export type ParticipantCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
    * Select specific fields to fetch from the ParticipantCountOutputType
    */
   select?: Prisma.ParticipantCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ParticipantCountOutputType without action
+ */
+export type ParticipantCountOutputTypeCountExerciserecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExerciseRecordWhereInput
 }
 
 /**
@@ -709,6 +809,7 @@ export type ParticipantSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   updatedAt?: boolean
   group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  exerciserecords?: boolean | Prisma.Participant$exerciserecordsArgs<ExtArgs>
   GroipLike?: boolean | Prisma.Participant$GroipLikeArgs<ExtArgs>
   _count?: boolean | Prisma.ParticipantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["participant"]>
@@ -751,6 +852,7 @@ export type ParticipantSelectScalar = {
 export type ParticipantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nickname" | "password" | "isowner" | "groupid" | "hasLiked" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 export type ParticipantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+  exerciserecords?: boolean | Prisma.Participant$exerciserecordsArgs<ExtArgs>
   GroipLike?: boolean | Prisma.Participant$GroipLikeArgs<ExtArgs>
   _count?: boolean | Prisma.ParticipantCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -765,6 +867,7 @@ export type $ParticipantPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "Participant"
   objects: {
     group: Prisma.$GroupPayload<ExtArgs>
+    exerciserecords: Prisma.$ExerciseRecordPayload<ExtArgs>[]
     GroipLike: Prisma.$GroipLikePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1171,6 +1274,7 @@ readonly fields: ParticipantFieldRefs;
 export interface Prisma__ParticipantClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   group<T extends Prisma.GroupDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GroupDefaultArgs<ExtArgs>>): Prisma.Prisma__GroupClient<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  exerciserecords<T extends Prisma.Participant$exerciserecordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Participant$exerciserecordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExerciseRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   GroipLike<T extends Prisma.Participant$GroipLikeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Participant$GroipLikeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroipLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1602,6 +1706,30 @@ export type ParticipantDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many Participants to delete.
    */
   limit?: number
+}
+
+/**
+ * Participant.exerciserecords
+ */
+export type Participant$exerciserecordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ExerciseRecord
+   */
+  select?: Prisma.ExerciseRecordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ExerciseRecord
+   */
+  omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  where?: Prisma.ExerciseRecordWhereInput
+  orderBy?: Prisma.ExerciseRecordOrderByWithRelationInput | Prisma.ExerciseRecordOrderByWithRelationInput[]
+  cursor?: Prisma.ExerciseRecordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExerciseRecordScalarFieldEnum | Prisma.ExerciseRecordScalarFieldEnum[]
 }
 
 /**

@@ -30,12 +30,16 @@ export type ExerciseRecordAvgAggregateOutputType = {
   id: number | null
   playtime: number | null
   distance: number | null
+  participantId: number | null
+  groupId: number | null
 }
 
 export type ExerciseRecordSumAggregateOutputType = {
   id: number | null
   playtime: number | null
   distance: number | null
+  participantId: number | null
+  groupId: number | null
 }
 
 export type ExerciseRecordMinAggregateOutputType = {
@@ -45,6 +49,8 @@ export type ExerciseRecordMinAggregateOutputType = {
   playtime: number | null
   distance: number | null
   password: string | null
+  participantId: number | null
+  groupId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +62,8 @@ export type ExerciseRecordMaxAggregateOutputType = {
   playtime: number | null
   distance: number | null
   password: string | null
+  participantId: number | null
+  groupId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -68,6 +76,8 @@ export type ExerciseRecordCountAggregateOutputType = {
   distance: number
   images: number
   password: number
+  participantId: number
+  groupId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -78,12 +88,16 @@ export type ExerciseRecordAvgAggregateInputType = {
   id?: true
   playtime?: true
   distance?: true
+  participantId?: true
+  groupId?: true
 }
 
 export type ExerciseRecordSumAggregateInputType = {
   id?: true
   playtime?: true
   distance?: true
+  participantId?: true
+  groupId?: true
 }
 
 export type ExerciseRecordMinAggregateInputType = {
@@ -93,6 +107,8 @@ export type ExerciseRecordMinAggregateInputType = {
   playtime?: true
   distance?: true
   password?: true
+  participantId?: true
+  groupId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,6 +120,8 @@ export type ExerciseRecordMaxAggregateInputType = {
   playtime?: true
   distance?: true
   password?: true
+  participantId?: true
+  groupId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -116,6 +134,8 @@ export type ExerciseRecordCountAggregateInputType = {
   distance?: true
   images?: true
   password?: true
+  participantId?: true
+  groupId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -215,6 +235,8 @@ export type ExerciseRecordGroupByOutputType = {
   distance: number
   images: string[]
   password: string
+  participantId: number
+  groupId: number
   createdAt: Date
   updatedAt: Date
   _count: ExerciseRecordCountAggregateOutputType | null
@@ -250,8 +272,12 @@ export type ExerciseRecordWhereInput = {
   distance?: Prisma.FloatFilter<"ExerciseRecord"> | number
   images?: Prisma.StringNullableListFilter<"ExerciseRecord">
   password?: Prisma.StringFilter<"ExerciseRecord"> | string
+  participantId?: Prisma.IntFilter<"ExerciseRecord"> | number
+  groupId?: Prisma.IntFilter<"ExerciseRecord"> | number
   createdAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
+  participant?: Prisma.XOR<Prisma.ParticipantScalarRelationFilter, Prisma.ParticipantWhereInput>
+  group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
 }
 
 export type ExerciseRecordOrderByWithRelationInput = {
@@ -262,8 +288,12 @@ export type ExerciseRecordOrderByWithRelationInput = {
   distance?: Prisma.SortOrder
   images?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  participant?: Prisma.ParticipantOrderByWithRelationInput
+  group?: Prisma.GroupOrderByWithRelationInput
 }
 
 export type ExerciseRecordWhereUniqueInput = Prisma.AtLeast<{
@@ -277,8 +307,12 @@ export type ExerciseRecordWhereUniqueInput = Prisma.AtLeast<{
   distance?: Prisma.FloatFilter<"ExerciseRecord"> | number
   images?: Prisma.StringNullableListFilter<"ExerciseRecord">
   password?: Prisma.StringFilter<"ExerciseRecord"> | string
+  participantId?: Prisma.IntFilter<"ExerciseRecord"> | number
+  groupId?: Prisma.IntFilter<"ExerciseRecord"> | number
   createdAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
+  participant?: Prisma.XOR<Prisma.ParticipantScalarRelationFilter, Prisma.ParticipantWhereInput>
+  group?: Prisma.XOR<Prisma.GroupScalarRelationFilter, Prisma.GroupWhereInput>
 }, "id">
 
 export type ExerciseRecordOrderByWithAggregationInput = {
@@ -289,6 +323,8 @@ export type ExerciseRecordOrderByWithAggregationInput = {
   distance?: Prisma.SortOrder
   images?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ExerciseRecordCountOrderByAggregateInput
@@ -309,6 +345,8 @@ export type ExerciseRecordScalarWhereWithAggregatesInput = {
   distance?: Prisma.FloatWithAggregatesFilter<"ExerciseRecord"> | number
   images?: Prisma.StringNullableListFilter<"ExerciseRecord">
   password?: Prisma.StringWithAggregatesFilter<"ExerciseRecord"> | string
+  participantId?: Prisma.IntWithAggregatesFilter<"ExerciseRecord"> | number
+  groupId?: Prisma.IntWithAggregatesFilter<"ExerciseRecord"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ExerciseRecord"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ExerciseRecord"> | Date | string
 }
@@ -322,6 +360,8 @@ export type ExerciseRecordCreateInput = {
   password: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  participant: Prisma.ParticipantCreateNestedOneWithoutExerciserecordsInput
+  group: Prisma.GroupCreateNestedOneWithoutExerciserecordsInput
 }
 
 export type ExerciseRecordUncheckedCreateInput = {
@@ -332,6 +372,8 @@ export type ExerciseRecordUncheckedCreateInput = {
   distance: number
   images?: Prisma.ExerciseRecordCreateimagesInput | string[]
   password: string
+  participantId: number
+  groupId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -345,6 +387,8 @@ export type ExerciseRecordUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  participant?: Prisma.ParticipantUpdateOneRequiredWithoutExerciserecordsNestedInput
+  group?: Prisma.GroupUpdateOneRequiredWithoutExerciserecordsNestedInput
 }
 
 export type ExerciseRecordUncheckedUpdateInput = {
@@ -355,6 +399,8 @@ export type ExerciseRecordUncheckedUpdateInput = {
   distance?: Prisma.FloatFieldUpdateOperationsInput | number
   images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  participantId?: Prisma.IntFieldUpdateOperationsInput | number
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -367,6 +413,8 @@ export type ExerciseRecordCreateManyInput = {
   distance: number
   images?: Prisma.ExerciseRecordCreateimagesInput | string[]
   password: string
+  participantId: number
+  groupId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -390,8 +438,20 @@ export type ExerciseRecordUncheckedUpdateManyInput = {
   distance?: Prisma.FloatFieldUpdateOperationsInput | number
   images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  participantId?: Prisma.IntFieldUpdateOperationsInput | number
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ExerciseRecordListRelationFilter = {
+  every?: Prisma.ExerciseRecordWhereInput
+  some?: Prisma.ExerciseRecordWhereInput
+  none?: Prisma.ExerciseRecordWhereInput
+}
+
+export type ExerciseRecordOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ExerciseRecordCountOrderByAggregateInput = {
@@ -402,6 +462,8 @@ export type ExerciseRecordCountOrderByAggregateInput = {
   distance?: Prisma.SortOrder
   images?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -410,6 +472,8 @@ export type ExerciseRecordAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   playtime?: Prisma.SortOrder
   distance?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
 }
 
 export type ExerciseRecordMaxOrderByAggregateInput = {
@@ -419,6 +483,8 @@ export type ExerciseRecordMaxOrderByAggregateInput = {
   playtime?: Prisma.SortOrder
   distance?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -430,6 +496,8 @@ export type ExerciseRecordMinOrderByAggregateInput = {
   playtime?: Prisma.SortOrder
   distance?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -438,6 +506,92 @@ export type ExerciseRecordSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   playtime?: Prisma.SortOrder
   distance?: Prisma.SortOrder
+  participantId?: Prisma.SortOrder
+  groupId?: Prisma.SortOrder
+}
+
+export type ExerciseRecordCreateNestedManyWithoutGroupInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput> | Prisma.ExerciseRecordCreateWithoutGroupInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput | Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyGroupInputEnvelope
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+}
+
+export type ExerciseRecordUncheckedCreateNestedManyWithoutGroupInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput> | Prisma.ExerciseRecordCreateWithoutGroupInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput | Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyGroupInputEnvelope
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+}
+
+export type ExerciseRecordUpdateManyWithoutGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput> | Prisma.ExerciseRecordCreateWithoutGroupInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput | Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput[]
+  upsert?: Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutGroupInput | Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutGroupInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyGroupInputEnvelope
+  set?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  disconnect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  delete?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  update?: Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutGroupInput | Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutGroupInput[]
+  updateMany?: Prisma.ExerciseRecordUpdateManyWithWhereWithoutGroupInput | Prisma.ExerciseRecordUpdateManyWithWhereWithoutGroupInput[]
+  deleteMany?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
+}
+
+export type ExerciseRecordUncheckedUpdateManyWithoutGroupNestedInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput> | Prisma.ExerciseRecordCreateWithoutGroupInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput | Prisma.ExerciseRecordCreateOrConnectWithoutGroupInput[]
+  upsert?: Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutGroupInput | Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutGroupInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyGroupInputEnvelope
+  set?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  disconnect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  delete?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  update?: Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutGroupInput | Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutGroupInput[]
+  updateMany?: Prisma.ExerciseRecordUpdateManyWithWhereWithoutGroupInput | Prisma.ExerciseRecordUpdateManyWithWhereWithoutGroupInput[]
+  deleteMany?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
+}
+
+export type ExerciseRecordCreateNestedManyWithoutParticipantInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput> | Prisma.ExerciseRecordCreateWithoutParticipantInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput | Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyParticipantInputEnvelope
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+}
+
+export type ExerciseRecordUncheckedCreateNestedManyWithoutParticipantInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput> | Prisma.ExerciseRecordCreateWithoutParticipantInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput | Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyParticipantInputEnvelope
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+}
+
+export type ExerciseRecordUpdateManyWithoutParticipantNestedInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput> | Prisma.ExerciseRecordCreateWithoutParticipantInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput | Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput[]
+  upsert?: Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutParticipantInput | Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutParticipantInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyParticipantInputEnvelope
+  set?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  disconnect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  delete?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  update?: Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutParticipantInput | Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutParticipantInput[]
+  updateMany?: Prisma.ExerciseRecordUpdateManyWithWhereWithoutParticipantInput | Prisma.ExerciseRecordUpdateManyWithWhereWithoutParticipantInput[]
+  deleteMany?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
+}
+
+export type ExerciseRecordUncheckedUpdateManyWithoutParticipantNestedInput = {
+  create?: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput> | Prisma.ExerciseRecordCreateWithoutParticipantInput[] | Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput[]
+  connectOrCreate?: Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput | Prisma.ExerciseRecordCreateOrConnectWithoutParticipantInput[]
+  upsert?: Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutParticipantInput | Prisma.ExerciseRecordUpsertWithWhereUniqueWithoutParticipantInput[]
+  createMany?: Prisma.ExerciseRecordCreateManyParticipantInputEnvelope
+  set?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  disconnect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  delete?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  connect?: Prisma.ExerciseRecordWhereUniqueInput | Prisma.ExerciseRecordWhereUniqueInput[]
+  update?: Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutParticipantInput | Prisma.ExerciseRecordUpdateWithWhereUniqueWithoutParticipantInput[]
+  updateMany?: Prisma.ExerciseRecordUpdateManyWithWhereWithoutParticipantInput | Prisma.ExerciseRecordUpdateManyWithWhereWithoutParticipantInput[]
+  deleteMany?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
 }
 
 export type ExerciseRecordCreateimagesInput = {
@@ -461,6 +615,227 @@ export type ExerciseRecordUpdateimagesInput = {
   push?: string | string[]
 }
 
+export type ExerciseRecordCreateWithoutGroupInput = {
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  participant: Prisma.ParticipantCreateNestedOneWithoutExerciserecordsInput
+}
+
+export type ExerciseRecordUncheckedCreateWithoutGroupInput = {
+  id?: number
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  participantId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ExerciseRecordCreateOrConnectWithoutGroupInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput>
+}
+
+export type ExerciseRecordCreateManyGroupInputEnvelope = {
+  data: Prisma.ExerciseRecordCreateManyGroupInput | Prisma.ExerciseRecordCreateManyGroupInput[]
+  skipDuplicates?: boolean
+}
+
+export type ExerciseRecordUpsertWithWhereUniqueWithoutGroupInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.ExerciseRecordUpdateWithoutGroupInput, Prisma.ExerciseRecordUncheckedUpdateWithoutGroupInput>
+  create: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutGroupInput, Prisma.ExerciseRecordUncheckedCreateWithoutGroupInput>
+}
+
+export type ExerciseRecordUpdateWithWhereUniqueWithoutGroupInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.ExerciseRecordUpdateWithoutGroupInput, Prisma.ExerciseRecordUncheckedUpdateWithoutGroupInput>
+}
+
+export type ExerciseRecordUpdateManyWithWhereWithoutGroupInput = {
+  where: Prisma.ExerciseRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.ExerciseRecordUpdateManyMutationInput, Prisma.ExerciseRecordUncheckedUpdateManyWithoutGroupInput>
+}
+
+export type ExerciseRecordScalarWhereInput = {
+  AND?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
+  OR?: Prisma.ExerciseRecordScalarWhereInput[]
+  NOT?: Prisma.ExerciseRecordScalarWhereInput | Prisma.ExerciseRecordScalarWhereInput[]
+  id?: Prisma.IntFilter<"ExerciseRecord"> | number
+  exercisetype?: Prisma.EnumexerciseTypeFilter<"ExerciseRecord"> | $Enums.exerciseType
+  description?: Prisma.StringNullableFilter<"ExerciseRecord"> | string | null
+  playtime?: Prisma.IntFilter<"ExerciseRecord"> | number
+  distance?: Prisma.FloatFilter<"ExerciseRecord"> | number
+  images?: Prisma.StringNullableListFilter<"ExerciseRecord">
+  password?: Prisma.StringFilter<"ExerciseRecord"> | string
+  participantId?: Prisma.IntFilter<"ExerciseRecord"> | number
+  groupId?: Prisma.IntFilter<"ExerciseRecord"> | number
+  createdAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ExerciseRecord"> | Date | string
+}
+
+export type ExerciseRecordCreateWithoutParticipantInput = {
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  group: Prisma.GroupCreateNestedOneWithoutExerciserecordsInput
+}
+
+export type ExerciseRecordUncheckedCreateWithoutParticipantInput = {
+  id?: number
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  groupId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ExerciseRecordCreateOrConnectWithoutParticipantInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput>
+}
+
+export type ExerciseRecordCreateManyParticipantInputEnvelope = {
+  data: Prisma.ExerciseRecordCreateManyParticipantInput | Prisma.ExerciseRecordCreateManyParticipantInput[]
+  skipDuplicates?: boolean
+}
+
+export type ExerciseRecordUpsertWithWhereUniqueWithoutParticipantInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.ExerciseRecordUpdateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedUpdateWithoutParticipantInput>
+  create: Prisma.XOR<Prisma.ExerciseRecordCreateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedCreateWithoutParticipantInput>
+}
+
+export type ExerciseRecordUpdateWithWhereUniqueWithoutParticipantInput = {
+  where: Prisma.ExerciseRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.ExerciseRecordUpdateWithoutParticipantInput, Prisma.ExerciseRecordUncheckedUpdateWithoutParticipantInput>
+}
+
+export type ExerciseRecordUpdateManyWithWhereWithoutParticipantInput = {
+  where: Prisma.ExerciseRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.ExerciseRecordUpdateManyMutationInput, Prisma.ExerciseRecordUncheckedUpdateManyWithoutParticipantInput>
+}
+
+export type ExerciseRecordCreateManyGroupInput = {
+  id?: number
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  participantId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ExerciseRecordUpdateWithoutGroupInput = {
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  participant?: Prisma.ParticipantUpdateOneRequiredWithoutExerciserecordsNestedInput
+}
+
+export type ExerciseRecordUncheckedUpdateWithoutGroupInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  participantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ExerciseRecordUncheckedUpdateManyWithoutGroupInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  participantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ExerciseRecordCreateManyParticipantInput = {
+  id?: number
+  exercisetype: $Enums.exerciseType
+  description?: string | null
+  playtime: number
+  distance: number
+  images?: Prisma.ExerciseRecordCreateimagesInput | string[]
+  password: string
+  groupId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ExerciseRecordUpdateWithoutParticipantInput = {
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  group?: Prisma.GroupUpdateOneRequiredWithoutExerciserecordsNestedInput
+}
+
+export type ExerciseRecordUncheckedUpdateWithoutParticipantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ExerciseRecordUncheckedUpdateManyWithoutParticipantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  exercisetype?: Prisma.EnumexerciseTypeFieldUpdateOperationsInput | $Enums.exerciseType
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playtime?: Prisma.IntFieldUpdateOperationsInput | number
+  distance?: Prisma.FloatFieldUpdateOperationsInput | number
+  images?: Prisma.ExerciseRecordUpdateimagesInput | string[]
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  groupId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type ExerciseRecordSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -471,8 +846,12 @@ export type ExerciseRecordSelect<ExtArgs extends runtime.Types.Extensions.Intern
   distance?: boolean
   images?: boolean
   password?: boolean
+  participantId?: boolean
+  groupId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["exerciseRecord"]>
 
 export type ExerciseRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -483,8 +862,12 @@ export type ExerciseRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   distance?: boolean
   images?: boolean
   password?: boolean
+  participantId?: boolean
+  groupId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["exerciseRecord"]>
 
 export type ExerciseRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -495,8 +878,12 @@ export type ExerciseRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   distance?: boolean
   images?: boolean
   password?: boolean
+  participantId?: boolean
+  groupId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["exerciseRecord"]>
 
 export type ExerciseRecordSelectScalar = {
@@ -507,15 +894,32 @@ export type ExerciseRecordSelectScalar = {
   distance?: boolean
   images?: boolean
   password?: boolean
+  participantId?: boolean
+  groupId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ExerciseRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "exercisetype" | "description" | "playtime" | "distance" | "images" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["exerciseRecord"]>
+export type ExerciseRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "exercisetype" | "description" | "playtime" | "distance" | "images" | "password" | "participantId" | "groupId" | "createdAt" | "updatedAt", ExtArgs["result"]["exerciseRecord"]>
+export type ExerciseRecordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+}
+export type ExerciseRecordIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+}
+export type ExerciseRecordIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  participant?: boolean | Prisma.ParticipantDefaultArgs<ExtArgs>
+  group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
+}
 
 export type $ExerciseRecordPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ExerciseRecord"
-  objects: {}
+  objects: {
+    participant: Prisma.$ParticipantPayload<ExtArgs>
+    group: Prisma.$GroupPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     exercisetype: $Enums.exerciseType
@@ -524,6 +928,8 @@ export type $ExerciseRecordPayload<ExtArgs extends runtime.Types.Extensions.Inte
     distance: number
     images: string[]
     password: string
+    participantId: number
+    groupId: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["exerciseRecord"]>
@@ -920,6 +1326,8 @@ readonly fields: ExerciseRecordFieldRefs;
  */
 export interface Prisma__ExerciseRecordClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  participant<T extends Prisma.ParticipantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ParticipantDefaultArgs<ExtArgs>>): Prisma.Prisma__ParticipantClient<runtime.Types.Result.GetResult<Prisma.$ParticipantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  group<T extends Prisma.GroupDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GroupDefaultArgs<ExtArgs>>): Prisma.Prisma__GroupClient<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -956,6 +1364,8 @@ export interface ExerciseRecordFieldRefs {
   readonly distance: Prisma.FieldRef<"ExerciseRecord", 'Float'>
   readonly images: Prisma.FieldRef<"ExerciseRecord", 'String[]'>
   readonly password: Prisma.FieldRef<"ExerciseRecord", 'String'>
+  readonly participantId: Prisma.FieldRef<"ExerciseRecord", 'Int'>
+  readonly groupId: Prisma.FieldRef<"ExerciseRecord", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ExerciseRecord", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ExerciseRecord", 'DateTime'>
 }
@@ -975,6 +1385,10 @@ export type ExerciseRecordFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ExerciseRecord to fetch.
    */
   where: Prisma.ExerciseRecordWhereUniqueInput
@@ -993,6 +1407,10 @@ export type ExerciseRecordFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ExerciseRecord to fetch.
    */
   where: Prisma.ExerciseRecordWhereUniqueInput
@@ -1010,6 +1428,10 @@ export type ExerciseRecordFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the ExerciseRecord
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
   /**
    * Filter, which ExerciseRecord to fetch.
    */
@@ -1059,6 +1481,10 @@ export type ExerciseRecordFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ExerciseRecord to fetch.
    */
   where?: Prisma.ExerciseRecordWhereInput
@@ -1107,6 +1533,10 @@ export type ExerciseRecordFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  /**
    * Filter, which ExerciseRecords to fetch.
    */
   where?: Prisma.ExerciseRecordWhereInput
@@ -1150,6 +1580,10 @@ export type ExerciseRecordCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
+  /**
    * The data needed to create a ExerciseRecord.
    */
   data: Prisma.XOR<Prisma.ExerciseRecordCreateInput, Prisma.ExerciseRecordUncheckedCreateInput>
@@ -1183,6 +1617,10 @@ export type ExerciseRecordCreateManyAndReturnArgs<ExtArgs extends runtime.Types.
    */
   data: Prisma.ExerciseRecordCreateManyInput | Prisma.ExerciseRecordCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1197,6 +1635,10 @@ export type ExerciseRecordUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ExerciseRecord
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
   /**
    * The data needed to update a ExerciseRecord.
    */
@@ -1249,6 +1691,10 @@ export type ExerciseRecordUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.
    * Limit how many ExerciseRecords to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1263,6 +1709,10 @@ export type ExerciseRecordUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ExerciseRecord
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
   /**
    * The filter to search for the ExerciseRecord to update in case it exists.
    */
@@ -1289,6 +1739,10 @@ export type ExerciseRecordDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ExerciseRecord
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
   /**
    * Filter which ExerciseRecord to delete.
    */
@@ -1321,4 +1775,8 @@ export type ExerciseRecordDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the ExerciseRecord
    */
   omit?: Prisma.ExerciseRecordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExerciseRecordInclude<ExtArgs> | null
 }

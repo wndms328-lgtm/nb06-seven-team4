@@ -872,6 +872,8 @@ export const ExerciseRecordScalarFieldEnum = {
   distance: 'distance',
   images: 'images',
   password: 'password',
+  participantId: 'participantId',
+  groupId: 'groupId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

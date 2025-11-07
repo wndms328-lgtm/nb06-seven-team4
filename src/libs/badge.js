@@ -19,21 +19,12 @@ export async function checkAndAwardBadges(groupId) {
       return;
     }
 
-    // 운동 기록 수 조회
-    // TODO: ExerciseRecord 모델에 groupId 관계 필드 추가 필요
-    // 현재 스키마에는 관계가 없으므로 Participant를 통해 간접적으로 계산
-    // 또는 스키마 수정 후 groupId로 직접 조회 가능
-    const participants = group.participants.map((p) => p.id);
-    const recordCount =
-      participants.length > 0
-        ? await prisma.exerciseRecord.count({
-            // ExerciseRecord에 participantId 필드가 추가되면 이 조건 사용 가능
-            // where: { participantId: { in: participants } }
-          })
-        : 0;
-
-    // 임시: 스키마에 관계가 없으므로 0으로 설정 (나중에 스키마 수정 후 변경 필요)
-    const actualRecordCount = 0;
+    // 운동 기록 수 조회 (groupId로 직접 조회)
+    const recordCount = await prisma.exerciseRecord.count({
+      where: {
+        groupId: groupId,
+      },
+    });
 
     const participantCount = group.participants.length;
     const likeCount = group.likes;
@@ -52,7 +43,7 @@ export async function checkAndAwardBadges(groupId) {
     }
 
     // OVERHUNDREADRECORD: 운동 기록이 100개 이상
-    if (actualRecordCount >= 100 && !awardedBadges.includes('OVERHUNDREADRECORD')) {
+    if (recordCount >= 100 && !awardedBadges.includes('OVERHUNDREADRECORD')) {
       await prisma.medal.create({
         data: {
           medaltype: 'OVERHUNDREADRECORD',
