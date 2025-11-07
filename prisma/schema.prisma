@@ -34,15 +34,16 @@ model Group {
 }
 
 model Participant {
-  id        Int      @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   nickname  String
   password  String
   isowner   Boolean
   groupid   Int
-  group     Group    @relation(fields: [groupid], references: [id], onDelete: Cascade)
+  group     Group       @relation(fields: [groupid], references: [id], onDelete: Cascade)
   hasLiked  Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  GroipLike GroipLike[]
 
   @@unique([groupid, nickname])
 }
