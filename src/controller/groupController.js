@@ -2,7 +2,6 @@
 import { AddGroupLike, MinusGroupLike, GetGroupListParamsStruct } from '../structs/groupStructs.js';
 import { assert } from 'superstruct';
 import { prismaClient } from './../libs/constants.js';
-import { skip } from '@prisma/client/runtime/library';
 
 
 export async function GetGroupList(req, res) {
@@ -48,7 +47,7 @@ export async function PostGroupLike(req, res) {
 }
 
 export async function DeleteGroupLike(req, res) {
-    assert(req.params, AddGroupLike);
+    assert(req.params, MinusGroupLike);
     const { groupid } = req.params;
     const updatedGroup = await prismaClient.group.update({
         where: { id: parseInt(groupid) },
