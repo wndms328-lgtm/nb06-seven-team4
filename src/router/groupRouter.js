@@ -25,6 +25,6 @@ groupRouter.delete('/:groupId', catchAsync(groupController.deleteGroup));
 groupRouter.post('/:groupId/likes', catchAsync(groupController.PostGroupLike));
 
 // 그룹 좋아요 취소
-groupRouter.delete('/:groupId/likes', catchAsync(groupController.PostGroupLike));
+groupRouter.delete('/:groupId/likes', catchAsync(groupController.DeleteGroupLike));
 
 export default groupRouter;

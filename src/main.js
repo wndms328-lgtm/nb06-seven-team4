@@ -2,7 +2,7 @@ import express from 'express';
 import { PORT } from './libs/constants.js';
 import cors from 'cors';
 import groupRouter from './router/groupRouter.js';
-import { globalErrorHandler } from './middlewares/errorHandler.js';
+import { globalErrorHandler } from './libs/errorHandler.js';
 
 const app = express();
 app.use(cors());

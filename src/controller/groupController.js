@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { CustomError } from '../libs/errorHandler.js';
-import { AddGroupLike, MinusGroupLike, GetGroupListParamsStruct } from '../structs/groupStructs.js';
-import { assert } from 'superstruct';
+import { GetGroupListParamsStruct } from '../structs/groupStructs.js';
+import { assert, create } from 'superstruct';
 import { prismaClient } from './../libs/constants.js';
 
 
@@ -25,7 +25,7 @@ export class GroupController {
                 password,
                 image,
                 tags,
-                goalNumber,
+                goalnumber,
                 discordWebhookUrl,
                 discordServerInviteUrl
             } = req.body;
@@ -46,7 +46,7 @@ export class GroupController {
                     nickname: nickname,
                     password: hashedPassword,
                     image,
-                    goalNumber: goalNumber,
+                    goalnumber: goalnumber,
                     discordwebhookurl: discordWebhookUrl,
                     discordserverinviteurl: discordServerInviteUrl,
                     tag: tags || [],
@@ -77,6 +77,21 @@ export class GroupController {
      */
     async getAllGroups(req, res, next) {
         try {
+            const { page = 1, limit = 10, order = 'desc', orderBy = 'createdAt', search } = create(req.query, GetGroupListParamsStruct);
+            const where = {
+                title: search ? { contains: search } : undefined,
+            };
+
+            const totalCount = await prismaClient.group.count({ where });
+
+            let orderBySetting;
+            switch (orderBy) {
+                case 'likeCount': { orderBySetting = { likeCount: order }; } break;
+                case 'participantCount': { orderBySetting = { participantCount: order }; } break;
+                case 'createdAt': { orderBySetting = { createdAt: order }; } break;
+                default: { orderBySetting = { createdAt: order }; } break;
+            }
+
             const groups = await prismaClient.group.findMany({
                 select: {
                     id: true,
@@ -85,24 +100,35 @@ export class GroupController {
                     nickname: true,
                     image: true,
                     tag: true,
-                    goalNumber: true,
+                    goalnumber: true,
                     likes: true,
                     createdAt: true,
                 },
-                orderBy: [
-                    { likes: 'desc' },
-                    { createdAt: 'desc' }
-                ]
+                skip: (page - 1) * limit,
+                take: limit,
+                orderBy: orderBySetting,
+                where,
             });
+            return res.send({ list: groups, totalCount });
+        }
+        catch (err) {
+            if (err.name === 'StructError') {
+                const failure = err.failures()[0];//첫번째실패정보
+                if (failure.path.includes('orderBy')) {
+                    return res.status(400).json({
+                        path: failure.path.join('.'),
+                        message: "The orderBy parameter must be one of the following values: [‘likeCount’, ‘participantCount’, ‘createdAt’]."
+                    });
+                }
+                else if (failure.path.includes('order')) {
+                    return res.status(400).json({
+                        path: failure.path.join('.'),
+                        message: "The order parameter must be one of the following values: [desc, asc]."
+                    });
+                }
+            }
+            return next(err);
 
-            res.status(200).json({
-                message: '그룹 목록 조회가 성공적으로 완료되었습니다.',
-                count: groups.length,
-                groups: groups,
-            });
-
-        } catch (error) {
-            next(error);
         }
     }
 
@@ -129,7 +155,7 @@ export class GroupController {
                     tag: true,
                     discordwebhookurl: true,
                     discordserverinviteurl: true,
-                    goalNumber: true,
+                    goalnumber: true,
                     likes: true,
                     createdAt: true,
                     updatedAt: true,
@@ -168,7 +194,7 @@ export class GroupController {
                 description,
                 image,
                 tags,
-                goalNumber,
+                goalnumber,
                 discordWebhookUrl,
                 discordServerInviteUrl,
                 password
@@ -202,7 +228,7 @@ export class GroupController {
             if (groupName) updateData.groupName = groupName;
             if (description) updateData.description = description;
             if (image) updateData.image = image;
-            if (goalNumber !== undefined) updateData.goalNumber = Number(goalNumber);
+            if (goalnumber !== undefined) updateData.goalnumber = Number(goalnumber);
             if (discordWebhookUrl) updateData.discordwebhookurl = discordWebhookUrl;
             if (discordServerInviteUrl) updateData.discordserverinviteurl = discordServerInviteUrl;
             if (tags !== undefined) updateData.tag = tags;
@@ -273,7 +299,7 @@ export class GroupController {
         }
     }
     async GetGroupList(req, res) {
-        const { page, limit, order, orderBy, search } = create(req.query, GetGroupListParamsStruct);
+        const { page = 1, limit = 10, order = 'desc', orderBy = 'createdAt', search } = create(req.query, GetGroupListParamsStruct);
         const where = {
             title: search ? { contains: search } : undefined,
         };
@@ -289,6 +315,17 @@ export class GroupController {
         }
 
         const groups = await prismaClient.group.findMany({
+            select: {
+                id: true,
+                groupName: true,
+                description: true,
+                nickname: true,
+                image: true,
+                tag: true,
+                goalnumber: true,
+                likes: true,
+                createdAt: true,
+            },
             skip: (page - 1) * limit,
             take: limit,
             orderBy: orderBySetting,
@@ -299,12 +336,14 @@ export class GroupController {
 
 
     async PostGroupLike(req, res) {
-        assert(req.params, AddGroupLike);
-        const { groupid } = req.params;
+        const { groupId } = req.params;
+        const id = parseInt(groupId);
+        // assert(id, AddGroupLike);
+
         const updatedGroup = await prismaClient.group.update({
-            where: { id: parseInt(groupid) },
+            where: { id: id },
             data: {
-                likes: { increament: 1 }
+                likes: { increment: 1 }
             },
             select: {
                 id: true,
@@ -315,10 +354,11 @@ export class GroupController {
     }
 
     async DeleteGroupLike(req, res) {
-        assert(req.params, MinusGroupLike);
-        const { groupid } = req.params;
+        const { groupId } = req.params;
+        const id = parseInt(groupId);
+        // assert(req.params, MinusGroupLike);
         const updatedGroup = await prismaClient.group.update({
-            where: { id: parseInt(groupid) },
+            where: { id: id },
             data: {
                 likes: { decrement: 1 }
             },
