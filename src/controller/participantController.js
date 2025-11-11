@@ -122,7 +122,7 @@ class ParticipantController {
         discordWebhookUrl: updatedGroup.discordwebhookurl || '',
         discordInviteUrl: updatedGroup.discordserverinviteurl || '',
         likeCount: updatedGroup.likes,
-        tags: updatedGroup.tag,
+        tags: Array.isArray(updatedGroup.tag) ? updatedGroup.tag : [],
         owner: owner,
         participants: updatedGroup.participants.map((p) => ({
           id: p.id,
