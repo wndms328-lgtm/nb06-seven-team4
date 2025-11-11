@@ -1,9 +1,11 @@
 import 'dotenv/config';
+import { PORT } from './libs/constants.js';
 import express from 'express';
 import cors from 'cors';
 import participantRouter from './router/participantRouter.js';
 import rankingRouter from './router/rankingRouter.js';
 import errorHandler from './libs/errorHandler.js';
+import groupRouter from './router/groupRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,11 +18,19 @@ app.use(express.urlencoded({ extended: true }));
 // 라우터
 app.use('/groups', participantRouter);
 app.use('/groups', rankingRouter);
+app.use('/groups', groupRouter);
 
 // 기본 경로
 app.get('/', (req, res) => {
   res.json({ message: 'API Server is running' });
 });
+
+/*
+// 기본 경로 응답
+app.get('/', (req, res) => {
+    res.send('API Server Running');
+});
+*/
 
 // 404 핸들러
 app.use((req, res) => {
