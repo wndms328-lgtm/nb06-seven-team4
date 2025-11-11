@@ -5,6 +5,6 @@ import { assert } from 'superstruct';
 const prisma = new PrismaClient();
 
 
-export async function PostGroupLiet(req, res) {
+export async function PostGroupList(req, res) {
 
 }

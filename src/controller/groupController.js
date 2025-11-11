@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
-import { CustomError } from '../middlewares/errorHandler.js';
+import { CustomError } from '../libs/errorHandler.js';
 
 const prisma = new PrismaClient();
 
