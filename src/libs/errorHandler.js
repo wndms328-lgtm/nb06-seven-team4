@@ -1,5 +1,5 @@
 /**
- * 모든 커스텀 에러의 기본이 되는 클래스입니다.
+ * 모든 커스텀 에러의 기본이 되는 클래스
  * HTTP 상태 코드와 메시지를 포함하여 Global Error Handler가 쉽게 처리할 수 있도록 합니다.
  */
 export class CustomError extends Error {
@@ -14,7 +14,7 @@ export class CustomError extends Error {
 }
 
 /**
- * 전역 에러 핸들러 미들웨어입니다.
+ * 전역 에러 핸들러 미들웨어
  * 모든 Request Handler에서 발생한 에러를 이곳에서 최종적으로 처리합니다.
  */
 export const globalErrorHandler = (err, req, res, next) => {
