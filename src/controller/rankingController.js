@@ -9,8 +9,8 @@ class RankingController {
 
       if (isNaN(groupId)) {
         return res.status(400).json({
-          path: 'id',
-          message: 'Invalid group ID',
+          path: 'groupId',
+          message: 'groupId must be integer',
         });
       }
 
