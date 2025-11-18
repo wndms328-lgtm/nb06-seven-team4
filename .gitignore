@@ -1,3 +1,5 @@
 node_modules/
-__http__
+prisma/
 .env
+__http__/
+src/generated/
